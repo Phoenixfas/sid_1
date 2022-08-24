@@ -55,3 +55,36 @@ code {
 .header li > a > p{
   margin-left: 5px;
 }
+.logout__btn{
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.logout__btn > p{
+  margin: 0;
+  margin-left: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.loadingSpinner{
+  width: 30px;
+  height: 30px;
+  border: rgb(0, 168, 80) solid 5px;
+  border-radius: 50%;
+  border-top: transparent solid 5px;
+  animation: loadingSpinner linear 2s infinite;
+}
+@keyframes loadingSpinner{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
