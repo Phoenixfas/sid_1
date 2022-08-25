@@ -25,10 +25,13 @@ export default function Register() {
 
 
     useEffect(() => {
+        if(!admin){
+            navigate("/login")
+        }
         if(isError){
             toast.error(message)
         }
-        if(isSuccess || admin){
+        if(isSuccess ){
             navigate("/")
         }
         dispatch(reset())

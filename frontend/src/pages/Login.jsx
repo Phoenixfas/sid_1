@@ -63,7 +63,7 @@ export default function Login() {
             <form onSubmit={onSubmit} >
                 <input type="text" id="email" name="email" value={email} placeholder="Enter email" onChange={onChange} autoComplete="off" required />
                 <input type="password" id="password" name="password" value={password} placeholder="Enter password" onChange={onChange} required />
-                <button type="submit" className="l__btn" >Submit</button>
+                <button type="submit" className="l__btn" >Login</button>
             </form>
         </section>
     </div>

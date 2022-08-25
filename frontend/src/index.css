@@ -72,9 +72,13 @@ code {
   font-weight: bold;
 }
 
+.spinnerContainer{
+  width: 100%;
+}
 .loadingSpinner{
-  width: 30px;
-  height: 30px;
+  margin: auto;
+  width: 25px;
+  height: 25px;
   border: rgb(0, 168, 80) solid 5px;
   border-radius: 50%;
   border-top: transparent solid 5px;
