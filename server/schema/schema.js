@@ -9,6 +9,8 @@ const {
 // const { articles, categories } = require("../sampleData");
 const Article = require("../models/Article");
 const Category = require("../models/Category");
+const Tweet = require("../models/Tweet");
+const Admin = require("../models/Admin");
 
 const CategoryType = new GraphQLObjectType({
   name: "Category",
@@ -38,9 +40,33 @@ const ArticleType = new GraphQLObjectType({
   }),
 });
 
+const TweetType = new GraphQLObjectType({
+  name: "Tweet",
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    image: { type: GraphQLString },
+    text: { type: GraphQLString },
+  }),
+});
+const AdminType = new GraphQLObjectType({
+  name: "Admin",
+  fields: () => ({
+    _id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
+  }),
+});
+
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
+    admins: {
+      type: new GraphQLList(AdminType),
+      resolve: () => {
+        return Admin.find();
+      },
+    },
     article: {
       type: ArticleType,
       args: { id: { type: GraphQLID } },
@@ -67,12 +93,34 @@ const RootQuery = new GraphQLObjectType({
         return Category.findById(args.id);
       },
     },
+    tweets: {
+      type: new GraphQLList(TweetType),
+      resolve: () => {
+        return Tweet.find();
+      },
+    },
+    tweet: {
+      type: TweetType,
+      args: { id: { type: GraphQLID } },
+      resolve: (parent, args) => {
+        return Tweet.findById(args.id);
+      },
+    },
   },
 });
 
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
+    deleteAdmin: {
+      type: AdminType,
+      args: {
+        _id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve: (parent, args) => {
+        return Admin.findByIdAndRemove(args._id);
+      },
+    },
     addArticle: {
       type: ArticleType,
       args: {
@@ -146,6 +194,31 @@ const Mutation = new GraphQLObjectType({
           });
         });
         return Category.findByIdAndRemove(args.id);
+      },
+    },
+    addTweet: {
+      type: TweetType,
+      args: {
+        name: { type: GraphQLString },
+        image: { type: GraphQLString },
+        text: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        const tweet = new Tweet({
+          name: args.name,
+          image: args.image,
+          text: args.text,
+        });
+        return tweet.save();
+      },
+    },
+    deleteTweet: {
+      type: TweetType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve: (parent, args) => {
+        return Tweet.findByIdAndRemove(args.id);
       },
     },
   },

@@ -72,19 +72,13 @@ const loginAdmin = asyncHandler(async (req, res) => {
 // @route GET /api/admins/me
 // @access Private
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, name, email } = await Admin.findById(req.admin.id);
-
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-  });
+  res.status(200).json(req.admin);
 });
 
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "30d",
+    expiresIn: "10h",
   });
 };
 
