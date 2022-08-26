@@ -8,7 +8,8 @@ import "./index.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://sid-1.herokuapp.com/graphql",
+  // uri: "https://sid-1.herokuapp.com/graphql",
+  uri: "http://localhost:5000/graphql",
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
@@ -19,6 +20,11 @@ const client = new ApolloClient({
             },
           },
           articles: {
+            merge(existing, incoming) {
+              return incoming;
+            },
+          },
+          tweets: {
             merge(existing, incoming) {
               return incoming;
             },

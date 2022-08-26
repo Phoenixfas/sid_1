@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
+  color: #fff;
 }
 
 code {
@@ -45,12 +47,12 @@ code {
   padding: 0 10px;
   height: 40px;
   text-decoration: none;
-  color: #000;
+  color: #fff;
   font-size: 1rem;
   font-weight: bold;
 }
 .header li > a:hover{
-  color: #555;
+  color: #ccc;
 }
 .header li > a > p{
   margin-left: 5px;

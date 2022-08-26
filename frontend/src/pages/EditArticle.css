@@ -1,0 +1,32 @@
+.editArticle{
+    margin-top: 10px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+}
+.back-btn{
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #555;
+    text-decoration: none;
+    cursor: pointer;
+    align-self: flex-end;
+}
+.edit{
+    display: flex;
+    color: #fff;
+}
+.edit__left{
+    flex: 1;
+}
+.edit__left p {
+    font-size: 12px;
+}
+.edit__left img{
+    width: auto;
+    max-height: 200px;
+}
+.edit__right{
+    flex: 1;
+}

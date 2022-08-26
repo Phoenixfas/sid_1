@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client"
 import { GET_CATEGORIES } from "../graphql/queries/categoryQueries"
+import CategoryRow from "./CategoryRow"
 import Spinner from "./Spinner"
 
 export default function Categories() {
@@ -17,9 +18,7 @@ export default function Categories() {
                     <p>Name</p>
                 </div>
                 {data && data.categories.map(category => (
-                    <div key={category.id} className="article__row" >
-                        <p>{category.name}</p>
-                    </div>
+                    <CategoryRow category={category} key={category.id} />
                 ))}
             </div>
         )}
